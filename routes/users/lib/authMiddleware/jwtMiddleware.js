@@ -4,9 +4,9 @@ const jwtMiddleware = async (req, res, next) => {
   try {
     if (req.headers && req.headers.authorization) {
       const tokenCut = req.headers.authorization.substring(7);
-      const decoded = jwt.verify(tokenCut, process.env.SECRET_KEY);
+      const decodedToken = jwt.verify(tokenCut, process.env.SECRET_KEY);
 
-      res.locals.decodedToken = decoded;
+      res.locals.decodedToken = decodedToken;
       next();
     } else {
       throw { message: "You don't have the right permission." };
